@@ -8,6 +8,7 @@ The Weeks Lab focus was on Basic Dynamic Analysis which involves running the mal
 ## Executive Summary
 
 First of all Basic Static Analysis technique was conducted on the file sample named `Lab03-1.exe` which enabled in providing me initial information and clues about the sample. For Basic Static Analysis Steps followed was that I first of all uploaded the file Lab03.exe to Google's virusTotal.com, then went on to run the `strings` program on the sample to help me find clues as well as signatures if any that is associated with it, Moreover used PEid utility software to determine if the file `Lab03-1.exe` was packed and/or obfuscated, also opened the file in dependency walker and lastly used Resource hacker to ascertain whether the file lab-03.exe has hidden resources which may in addition get executed once the file Lab03-1.exe is launched. After performing the Basic static analysis which needs to be perfomed first, I then headed over to `hybrid-analysis.com` sandbox environment and uploaded the file `Lab03-1.exe`
+Before conducting Basic Dynamic Analysis on the sample the following utility tools including but not limited to process monitor, process explorer, inetSim,ncat, wireshark needs to be launched. Then followed by double clicking the file `Lab03-1` to also get it executed in the isolated environment. Once the file begins executing it appears among the process listing in the process monitor utility software and clicking on it shows that the file creates a `WinVMX32` mutex and also `Ws2_32.dll` file is also present suggesting that the file possesses networking functions
 
 ## Indicators of Compromise 
 
@@ -24,6 +25,8 @@ First of all Basic Static Analysis technique was conducted on the file sample na
 **URL:** www.practicalmalwareanalysis.com
 
 **File type:**  Win32 EXE  
+
+**Mutex:** WinVMX32
 
 ## Mitigations
 
@@ -58,7 +61,7 @@ The sample appear to be malware, and it seems it will be running a service named
 
 **SHA-256 (EXE):** 5eced7367ed63354b4ed5c556e2363514293f614c2c2eb187273381b2ef5f0f9 
 
-**URLs:** 
+**URLs:** www.practicalmalwareanalysis.com
 
 **File Type:** Win32 DLL  
 
