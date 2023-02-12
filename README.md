@@ -83,7 +83,7 @@ Opening the unpacked`.EXE` using BinText GUI, suggests that infected machines wi
 - BinText: A sysinternals GUI program that shows the strings in a program
 - PEView: Shows useful summary information about the portable executable(s), including compile time and imports
 - Dependency Walker: For showing imports
-
+- Process Monitor: Monitoring tool for Windows to monitor certain registry, file system, network, process, and thread activity.
 
 Analyzing the malware provided for lab 3-1 through 3-3
 using a combination of Basic Static Analysis and Basic 
