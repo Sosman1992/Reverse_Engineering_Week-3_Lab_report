@@ -1,13 +1,13 @@
 # Week 3 - Basic Dynamic Analysis
 
-The Weeks Lab focus was on the use of file hashes as a technique for identifying malware samples. Additionally, submitted sample of malware files or hashes by uploading these file via Google's VirusTotal website to scan the files with a variety of antivirus programs embedded in the website. Furthermore used BinText GUI  to search for ASCII and Unicode `strings` inside of a binary and also discovered how to use PEiD to determine whether the binary of a malware samples executable or linked library file is compressed to conceal its contents. Lastly exploration of Windows system tools that are used by portable executable including libraries that get dynamically linked and which functions are imported was also learnt.
+The Weeks Lab focus was on Basic Dynamic Analysis which involves running the malware to examine it behavior in a safe environment with tools including but not limited to Process Monitor, process Explorer, Wire Shark . Nontheless this analysis combines techniques used in both Basic static Analysis to help in providing certain clues about the sample before conducting the Basic Dynamic Analysis.
 
 ---
-# Lab 1-1 
+# Lab 3-1 
 
 ## Executive Summary
 
-These files were both compiled on the same date, looking at the `time date stamp` from PEview and it can be concluded that the `.exe` and `.dll` files are part of the same package. However, both the `.exe` and `.dll` are neither packed or obfuscated after opening both seperately using the PeID utility tool. Also there is an indication of a string kerne132.dll that seems similar to Windows kernel.dll file in the `system32` directory of windows computer to enable it appear as a windows normal file to enable it computers on the network and engage itself in some kind of filesystem manipulation. 
+First of all Basic Static Analysis technique was conducted on the file sample named `Lab03-1.exe` which enabled in providing me initial information and clues about the sample. For Basic Static Analysis Steps followed was that I first of all uploaded the file Lab03.exe to Google's virusTotal.com, then went on to run the `strings` program on the sample to help me find clues as well as signatures if any that is associated with it, Moreover used PEid utility software to determine if the file `Lab03-1.exe` was packed and/or obfuscated, also opened the file in dependency walker and lastly used Resource hacker to ascertain whether the file lab-03.exe has hidden resources which may in addition get executed once the file Lab03-1.exe is launched.
 
 ## Indicators of Compromise 
 
@@ -47,7 +47,7 @@ Opening these files with PEview, it can be seen that they both claim to have bee
 Using Dependency Walker on the `.DLL`, revealed the functions that were imported from various other link libraries of the code such as WS2_32.DLL which has networking capabalities tasks such as `bind` , `accept` , `connect` and closing `socket`. 
 
 ---
-# Lab 1-2
+# Lab 3-2
 
 ## Executive Summary
 The sample appear to be malware, and it seems it will be running a service named `MalService` on the infected machine that would enable it in connecting to a website `www.malwareanalysis.com` to download other malwares to infect an affected computer system and people on its network.
@@ -84,6 +84,7 @@ Opening the unpacked`.EXE` using BinText GUI, suggests that infected machines wi
 - PEView: Shows useful summary information about the portable executable(s), including compile time and imports
 - Dependency Walker: For showing imports
 - RegShot: for taking a snapshot before starting execution
+- monitors the processes running on a system
 - Process Monitor: Monitoring tool for Windows to monitor certain registry, file system, network, process, and thread activity.
 - Process Explorer: Windows task manager that was run when performing dynamic analysis to help in provision of valuable insight into the processes      currently running on a system. You can use Process Explorer to list active processes, DLLs loaded by a process,various process properties, and overall system information. You can also use it to kill a process, log out users, and launch and validate processes.
 
