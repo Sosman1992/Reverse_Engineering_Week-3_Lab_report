@@ -50,15 +50,17 @@ The sample appear to be malware, and it seems it will be running a service named
 
 ## Indicators of Compromise
 
-**Compilation Date :** JANUARY 2011
+**Compilation Date :** SEPTEMBER 2010
 
-**MD5 Hash (EXE):** 8363436878404da0ae3e46991e355b83 
+**MD5 Hash (DLL):** 84882c9d43e23d63b82004fae74ebb61
 
-**SHA-256 (EXE):** 8bcbe24929951d8aae6018b87b5ca799efe47aeb623e6e5d3665814c6d59aeae
+**SHA-1 (DLL):** c6fb3b50d946bec6f391aefa4e54478cf8607211
 
-**URLs:** http://www.malwareanalysisbook.com/
+**SHA-256 (EXE):** 5eced7367ed63354b4ed5c556e2363514293f614c2c2eb187273381b2ef5f0f9 
 
-**Service Name:** MalService
+**URLs:** 
+
+**File Type:** Win32 DLL  
 
 
 ## Mitigations
