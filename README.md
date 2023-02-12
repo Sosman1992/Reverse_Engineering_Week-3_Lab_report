@@ -7,27 +7,23 @@ The Weeks Lab focus was on Basic Dynamic Analysis which involves running the mal
 
 ## Executive Summary
 
-First of all Basic Static Analysis technique was conducted on the file sample named `Lab03-1.exe` which enabled in providing me initial information and clues about the sample. For Basic Static Analysis Steps followed was that I first of all uploaded the file Lab03.exe to Google's virusTotal.com, then went on to run the `strings` program on the sample to help me find clues as well as signatures if any that is associated with it, Moreover used PEid utility software to determine if the file `Lab03-1.exe` was packed and/or obfuscated, also opened the file in dependency walker and lastly used Resource hacker to ascertain whether the file lab-03.exe has hidden resources which may in addition get executed once the file Lab03-1.exe is launched.
+First of all Basic Static Analysis technique was conducted on the file sample named `Lab03-1.exe` which enabled in providing me initial information and clues about the sample. For Basic Static Analysis Steps followed was that I first of all uploaded the file Lab03.exe to Google's virusTotal.com, then went on to run the `strings` program on the sample to help me find clues as well as signatures if any that is associated with it, Moreover used PEid utility software to determine if the file `Lab03-1.exe` was packed and/or obfuscated, also opened the file in dependency walker and lastly used Resource hacker to ascertain whether the file lab-03.exe has hidden resources which may in addition get executed once the file Lab03-1.exe is launched. After performing the Basic static analysis which needs to be perfomed first, I then headed over to `hybrid-analysis.com` sandbox environment and uploaded the file `Lab03-1.exe`
 
 ## Indicators of Compromise 
 
-**Compilation Date (presumed):** DEC 2010
+**Compilation Date (presumed):**  JAN 2008
 
-**MD5 Hash (EXE):** bb7425b82141a1c0f7d60e5106676bb1
+**MD5 Hash (EXE):** d537acb8f56a1ce206bc35cf8ff959c0
 
-**SHA-1 Hash (EXE):**  9dce39ac1bd36d877fdb0025ee88fdaff0627cdb 
+**SHA-1 Hash (EXE):**  0bb491f62b77df737801b9ab0fd14fa12d43d254
 
-**SHA-256 Hash (EXE):**  58898bd42c5bd3bf9b1389f0eee5b39cd59180e8370eb9ea838a0b327bd6fe47 
+**SHA-256 Hash (EXE):** eb84360ca4e33b8bb60df47ab5ce962501ef3420bc7aab90655fd507d2ffcedd 
 
-**MD5 Hash (DLL):** 290934c61de9176ad682ffdd65f0a669 
+**File to look for:** vmx32to64.exe
 
-**SHA-1 Hash (DLL):**  a4b35de71ca20fe776dc72d12fb2886736f43c22 
+**URL:** www.practicalmalwareanalysis.com
 
-**SHA-256 Hash (DLL):** f50e42c8dfaab649bde0398867e930b86c2a599e8db83b8260393082268f2dba
-
-**File to look for:** `C:\windows\system32\kerne132.dll`
-
-**File type:** Win32 DLL 
+**File type:**  Win32 EXE  
 
 ## Mitigations
 
@@ -36,15 +32,15 @@ First of all Basic Static Analysis technique was conducted on the file sample na
 
 ## Evidence
 
-These malware are made up of two components, a portable executable (EXE) and a dynamically linked library (DLL). Uploading either to VirusTotal sets off dozens of vendors' virus classifiers.
+Uploading the sample to Google virusTotal revealed that it was compiled on 06 january 2008 and it is a packed with a packer called PENinja; also Google virusTotal engine shows that it has an import function associated with it namely `ExitProcess`.
 
-Opening these files with PEiD indicates that these files were written and compiled using Microsoft Visual C++ 6.0 , we see that they both claim to have been compiled in late 2010. 
+Running `strings` to help me in finding clues about the host-based and network based  signatures of the file. Going through the list of the  strings I found the web address `www.practicalmalwareanalysis.com` which is a network-based indicator and the string `vmx32to64.exe`which is a host-based indicator. 
 
-Opening the `.EXE` in BinText, the message string "`WARNING_THIS_WILL_DESTROY_YOUR_MACHINE`", and some other suspicious string "`C:\windows\system32\kerne132.dll`", which replaces the `l` in kernel with a `1`. Nonetheless, windows does not have a file named `kerne132.dll` hence the presence of such serves to be a proof that of malware availability.
+Opening the file using PEid revealed that the file is packed using PEncrypt 3.1 Final which is something different from what virusTotal
 
-Opening these files with PEview, it can be seen that they both claim to have been compiled in late 2010. This matches what VirusTotal reported, but VirusTotal only saw samples appear in mid-2012.
-
-Using Dependency Walker on the `.DLL`, revealed the functions that were imported from various other link libraries of the code such as WS2_32.DLL which has networking capabalities tasks such as `bind` , `accept` , `connect` and closing `socket`. 
+using dependency walker to explore DLL dependencies and the imports of the file lab-03.exe showed `kernel32.dll` and`ntdll.dll` associated with it which had only one import namely `ExitProcess`
+ 
+Lastly using Resource Hacker tool to check whether this file has certain resources associated with it; nonetheless no resource was showned.
 
 ---
 # Lab 3-2
