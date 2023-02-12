@@ -83,7 +83,9 @@ Opening the unpacked`.EXE` using BinText GUI, suggests that infected machines wi
 - BinText: A sysinternals GUI program that shows the strings in a program
 - PEView: Shows useful summary information about the portable executable(s), including compile time and imports
 - Dependency Walker: For showing imports
+- RegShot: for taking a snapshot before starting execution
 - Process Monitor: Monitoring tool for Windows to monitor certain registry, file system, network, process, and thread activity.
+- Process Explorer: Windows task manager that was run when performing dynamic analysis to help in provision of valuable insight into the processes      currently running on a system. You can use Process Explorer to list active processes, DLLs loaded by a process,various process properties, and overall system information. You can also use it to kill a process, log out users, and launch and validate processes.
 
 Analyzing the malware provided for lab 3-1 through 3-3
 using a combination of Basic Static Analysis and Basic 
