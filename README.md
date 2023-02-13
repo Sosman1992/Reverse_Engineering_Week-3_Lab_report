@@ -157,3 +157,10 @@ imports of the file lab-03.exe showed `kernel32.dll` and
 namely `ExitProcess`. and lastly using Resource Hacker tool
 to check whether this file has certain resources associated
 with it; nonetheless no resource was showned.  
+
+
+lab 03-3 popped up and then SVC.host popped below it and then lab03-3 disappeared
+You will get the malware to install by running 
+dll32.
+by rebooting the systemu can find the dll
+if its loaded by any process
