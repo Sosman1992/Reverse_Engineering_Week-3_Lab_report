@@ -78,6 +78,39 @@ Using DependencyWalker on the  unpacked`.EXE`, to find the imports of the unpack
 Opening the unpacked`.EXE` using BinText GUI, suggests that infected machines will connect to `http://www.malwareanalysis.com` and in addition a running service named `MalService` for creating services that connects to the web and downloading of malwares  to infect the computer system and other machines on the network.
 
 ---
+# Lab 3-3
+
+## Executive Summary
+
+## Indicators of Compromise
+
+**Compilation Date :** SEPTEMBER 2010
+
+**MD5 Hash (DLL):** 84882c9d43e23d63b82004fae74ebb61
+
+**SHA-1 (DLL):** c6fb3b50d946bec6f391aefa4e54478cf8607211
+
+**SHA-256 (EXE):** 5eced7367ed63354b4ed5c556e2363514293f614c2c2eb187273381b2ef5f0f9 
+
+**URLs:** www.practicalmalwareanalysis.com
+
+**File Type:** Win32 DLL  
+
+
+## Mitigations
+- Scanning through a computer system to see if is running a service called `MalService` then it implies the machine is infected
+
+## Evidence
+Opening the file using PE view there is no indication of the file packed looking at the virtual and raw size of the file. Also looking at .rdata section of the file it can be seen that there are ton of imports function from kernel32.dll that performs process manipulation, file creation and memory manipulation
+
+Opening file explorer and double clicking the file in the safe environment it can be seen that the  
+
+Using DependencyWalker on the  unpacked`.EXE`, to find the imports of the unpacked file, `InternetOpenUrlA` and `InternetOpenA` were revealed and they serve as a proof of the capability of the file connecting to the internet and in addition `CreateService` which is an import of the dynamic link library advapi32.dll serves as a proof that this suspected malware is capable of creating services on machines it infects to spread its infections.
+
+Opening the unpacked`.EXE` using BinText GUI, suggests that infected machines will connect to `http://www.malwareanalysis.com` and in addition a running service named `MalService` for creating services that connects to the web and downloading of malwares  to infect the computer system and other machines on the network.
+
+
+---
 
 ## Tools used and their functions
 - PeID : For confirming whether a file is packed or obfuscated
