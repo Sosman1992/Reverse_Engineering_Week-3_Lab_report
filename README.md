@@ -1,14 +1,13 @@
 # Week 3 - Basic Dynamic Analysis
 
-The Weeks Lab focus was on Basic Dynamic Analysis which involves running the malware to examine it behavior in a safe environment with tools including but not limited to Process Monitor, process Explorer, Wire Shark . Nontheless this analysis combines techniques used in both Basic static Analysis to help in providing certain clues about the sample before conducting the Basic Dynamic Analysis.
+The Weeks Lab focus was on Basic Dynamic Analysis which involves running a suspected sample file to examine it behavior in a safe environment with tools including but not limited to Process Monitor, process Explorer, ncat, Wire Shark etc. Nontheless Dynamic analysis combines techniques used in both Basic static Analysis to help in providing certain clues about the sample before conducting the Basic Dynamic Analysis.
 
 ---
 # Lab 3-1 
 
 ## Executive Summary
 
-First of all Basic Static Analysis technique was conducted on the file sample named `Lab03-1.exe` which enabled in providing me initial information and clues about the sample. For Basic Static Analysis Steps followed was that I first of all uploaded the file Lab03.exe to Google's virusTotal.com, then went on to run the `strings` program on the sample to help me find clues as well as signatures if any that is associated with it, Moreover used PEid utility software to determine if the file `Lab03-1.exe` was packed and/or obfuscated, also opened the file in dependency walker and lastly used Resource hacker to ascertain whether the file lab-03.exe has hidden resources which may in addition get executed once the file Lab03-1.exe is launched. After performing the Basic static analysis which needs to be perfomed first, I then headed over to `hybrid-analysis.com` sandbox environment and uploaded the file `Lab03-1.exe`
-Before conducting Basic Dynamic Analysis on the sample the following utility tools including but not limited to process monitor, process explorer, inetSim,ncat, wireshark needs to be launched. Then followed by double clicking the file `Lab03-1` to also get it executed in the isolated environment. Once the file begins executing it appears among the process listing in the process monitor utility software and clicking on it shows that the file creates a `WinVMX32` mutex and also `Ws2_32.dll` file is also present suggesting that the file possesses networking functions
+First of all Basic Static Analysis technique was conducted on the file sample named `Lab03-1.exe` which enabled in providing me initial information and clues about the sample. For Basic Static Analysis Steps followed are as follow; first of all, I uploaded the file `Lab03-1.exe` to Google's virusTotal.com website, then went on to run the `strings` program on the sample to help me find clues as well as signatures if any that may be associated with the suspected file, Moreover used PEid utility software to determine if the file `Lab03-1.exe` was packed and/or obfuscated, in addition, I also opened the file in dependency walker and lastly used Resource hacker to ascertain whether the file lab-03.exe has hidden resources which may in addition get executed once the file Lab03-1.exe is launched. After performing the Basic static analysis which needs to be perfomed first, I then headed over to `hybrid-analysis.com` sandbox environment and uploaded the file `Lab03-1.exe`  to enable in obtaining additional information about the file. Before conducting Basic Dynamic Analysis on the sample the following utility tools including but not limited to process monitor, process explorer, inetSim,ncat, wireshark needs to be launched, then followed by double clicking the file `Lab03-1` to also get it executed in the isolated environment. Once the file begins executing it appears among the process listing in the process monitor utility software and clicking on it shows that the file creates a `WinVMX32` mutex and also `Ws2_32.dll` file is also present suggesting that the file possesses networking functions
 
 ## Indicators of Compromise 
 
@@ -31,7 +30,6 @@ Before conducting Basic Dynamic Analysis on the sample the following utility too
 ## Mitigations
 
 - Deletions of files matching any of these hashes obtained from the scanning result from the VirusTotal website
-- Scan Windows machines for `system32\kerne132.dll`
 
 ## Evidence
 
@@ -107,7 +105,9 @@ Opening file explorer and double clicking the file in the safe environment it ca
 
 Using DependencyWalker on the  unpacked`.EXE`, to find the imports of the unpacked file, `InternetOpenUrlA` and `InternetOpenA` were revealed and they serve as a proof of the capability of the file connecting to the internet and in addition `CreateService` which is an import of the dynamic link library advapi32.dll serves as a proof that this suspected malware is capable of creating services on machines it infects to spread its infections.
 
-Opening the unpacked`.EXE` using BinText GUI, suggests that infected machines will connect to `http://www.malwareanalysis.com` and in addition a running service named `MalService` for creating services that connects to the web and downloading of malwares  to infect the computer system and other machines on the network.
+Double clicking lab 03-3 in the safe environment setup, Lab03-3.exe popped up in the process listing and then SVC.host popped below it and then lab03-3 disappeared
+
+You will get the malware to install by running dll32.
 
 
 ---
@@ -120,80 +120,5 @@ Opening the unpacked`.EXE` using BinText GUI, suggests that infected machines wi
 - RegShot: for taking a snapshot before starting execution
 - monitors the processes running on a system
 - Process Monitor: Monitoring tool for Windows to monitor certain registry, file system, network, process, and thread activity.
-- Process Explorer: Windows task manager that was run when performing dynamic analysis to help in provision of valuable insight into the processes      currently running on a system. You can use Process Explorer to list active processes, DLLs loaded by a process,various process properties, and overall system information. You can also use it to kill a process, log out users, and launch and validate processes.
+- Process Explorer: Windows task manager that was run when performing dynamic analysis to help in provision of valuable insight into the processes currently running on a system. Process Explorer lists active processes, DLLs loaded by a process,various process properties, and overall system information. Process Explorer can also be used to kill a process, log out users, and launch and validate processes.
 
-Analyzing the malware provided for lab 3-1 through 3-3
-using a combination of Basic Static Analysis and Basic 
-Dynamic Analysis.
-
-For Basic Static Analysis Steps followed:
- Uploading the file Lab03.exe to virusTotal.com
- Secondly run the `strings` program to help me find
- clues as well as signatures
- Next used PEid utility software to determine if the 
- file was packed 
- used dependency walker 
- and lastly used Resource hacker to evaluate the resource
- i found hidden the file lab-03.exe
-
-For Basic Dynamic Analysis steps followed are:
- Basic static analysis needs to be perfomed first
- Uploading the file to a malware sandbox hybrid-analysis.com
- preparing for dynamic test by setting up enviroment
- with required tools to monitor the malware behavior
-1. RegShot: for taking a snapshot before starting execution
-2. Procmon: To clear log before starting
-3. ProcessExplorer
-4. ApateDNS: TO rEROUTE InetSim server 
-
-lab 2
- 
-
-
-
-First of all uploading the sample to Google virusTotal
-revealed that it was compiled on 06 january 2008 and
-also showed that it is packed with a packer called PENinja
-and also shows that it has an import function associated with it
-namely `ExitProcess`. Next i run `strings` to help me in
-finding clues about the host-based and network based 
-signatures of the file. Going through the list of the 
-strings I found the web address `www.practicalmalwareanalysis.com`
-which is a network-based indicator and the string `vmx32to64.exe`
-which is a host-based indicator. Opening the file using 
-PEid revealed that the file is packed using PEncrypt 3.1 
-Final which is something different from what virusTotal
-using dependency walker to explore DLL dependencies and the 
-imports of the file lab-03.exe showed `kernel32.dll` and
-`ntdll.dll` associated with it which had only one import 
-namely `ExitProcess`. and lastly using Resource Hacker tool
-to check whether this file has certain resources associated
-with it; nonetheless no resource was showned. 
-
-
-
-lab 2
-First of all uploading the sample to Google virusTotal
-revealed that it was compiled on 06 january 2008 and
-also showed that it is packed with a packer called Armadilo
-and also shows that it has many import and export 
-function associated with it. Next i run `strings` to help me in
-finding clues about the host-based and network based 
-signatures of the file. Going through the list of the 
-strings I found the web address `www.practicalmalwareanalysis.com`
-which is a network-based indicator and the string `vmx32to64.exe`
-which is a host-based indicator. Opening the file using 
-PEid revealed that the file is not packed and it was written and compiled using Microsoft Visual C++ 6.0
-using dependency walker to explore DLL dependencies and the 
-imports of the file lab-03.exe showed `kernel32.dll` and
-`ntdll.dll` associated with it which had only one import 
-namely `ExitProcess`. and lastly using Resource Hacker tool
-to check whether this file has certain resources associated
-with it; nonetheless no resource was showned.  
-
-
-lab 03-3 popped up and then SVC.host popped below it and then lab03-3 disappeared
-You will get the malware to install by running 
-dll32.
-by rebooting the systemu can find the dll
-if its loaded by any process
