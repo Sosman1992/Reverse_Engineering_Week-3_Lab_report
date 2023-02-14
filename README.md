@@ -47,7 +47,7 @@ Lastly using Resource Hacker tool to check whether this file has certain resourc
 # Lab 3-2
 
 ## Executive Summary
-The sample appear to be malware, and it seems it will be running a service named `MalService` on the infected machine that would enable it in connecting to a website `www.malwareanalysis.com` to download other malwares to infect an affected computer system and people on its network.
+First of all, I uploaded the `Lab03-2.DLL` file to Google's virusTotal.com website, then went on to run the `strings` program on the file to help me find clues as well as signatures if any that may be associated with the suspected file, Moreover used PEid utility software to determine if the file `Lab03-2.DLL` was packed and/or obfuscated. Moreover opening the `Lab03-2.DLL` in PEview revealed that this file five exports function assoociated with it including `install`,`installA`,`uninstallA` `ServiceMain` and `UninstallService`. In addition this DLL file is also composed of imported functions
 
 ## Indicators of Compromise
 
