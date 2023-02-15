@@ -73,7 +73,9 @@ Opening the Lab file with PEiD, it can be seen that the file is packed with UPX 
 
 Using DependencyWalker on the  unpacked`.EXE`, to find the imports of the unpacked file, `InternetOpenUrlA` and `InternetOpenA` were revealed and they serve as a proof of the capability of the file connecting to the internet and in addition `CreateService` which is an import of the dynamic link library advapi32.dll serves as a proof that this suspected malware is capable of creating services on machines it infects to spread its infections.
 
-Opening the unpacked`.EXE` using BinText GUI, suggests that infected machines will connect to `http://www.malwareanalysis.com` and in addition a running service named `MalService` for creating services that connects to the web and downloading of malwares  to infect the computer system and other machines on the network.
+The export function "installA" of `LAB03-3.DLL` is used in installation of the suspected the malware as a Windows service and this was what caused the name of the sample to appear Windows Services Manager (services.msc) of process monitor.
+
+Typing `sc start `services.msc` at the command prompt started the malware service and allow it to execute.
 
 ---
 # Lab 3-3
@@ -119,6 +121,6 @@ You will get the malware to install by running dll32.
 - Dependency Walker: For showing imports
 - RegShot: for taking a snapshot before starting execution
 - monitors the processes running on a system
-- Process Monitor: Monitoring tool for Windows to monitor certain registry, file system, network, process, and thread activity.
+- Process Monitor: Monitoring tool for Windows to monitor certain registry, file system, network, process, and thread activity of a malware's behavior
 - Process Explorer: Windows task manager that was run when performing dynamic analysis to help in provision of valuable insight into the processes currently running on a system. Process Explorer lists active processes, DLLs loaded by a process,various process properties, and overall system information. Process Explorer can also be used to kill a process, log out users, and launch and validate processes.
 
