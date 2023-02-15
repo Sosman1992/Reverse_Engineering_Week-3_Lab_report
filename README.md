@@ -73,7 +73,9 @@ Opening the Lab file with PEiD, it can be seen that the file is packed with UPX 
 
 Using DependencyWalker on the  unpacked`.EXE`, to find the imports of the unpacked file, `InternetOpenUrlA` and `InternetOpenA` were revealed and they serve as a proof of the capability of the file connecting to the internet and in addition `CreateService` which is an import of the dynamic link library advapi32.dll serves as a proof that this suspected malware is capable of creating services on machines it infects to spread its infections.
 
-The export function "installA" of `LAB03-3.DLL` is used in installation of the suspected the malware as a Windows service and this was what caused the name of the sample to appear Windows Services Manager (services.msc) of process monitor.
+The export function "installA" of `LAB03-3.DLL` is used in installation of the suspected the malware as a Windows service and this was what caused the name of the sample to appear Windows Services Manager (services.msc) of process monitor, because when I running the other exports with the `rundll32.exe` no changes were shown in the registry
+
+Using Regshot the DLL installed IPRIP with its value added to the standard registry in order to support a service called `svchost.exe` which is a process in windows used to hold running services
 
 Typing `sc start `services.msc` at the command prompt started the malware service and allow it to execute.
 
@@ -107,7 +109,7 @@ Opening file explorer and double clicking the file in the safe environment it ca
 
 Using DependencyWalker on the  unpacked`.EXE`, to find the imports of the unpacked file, `InternetOpenUrlA` and `InternetOpenA` were revealed and they serve as a proof of the capability of the file connecting to the internet and in addition `CreateService` which is an import of the dynamic link library advapi32.dll serves as a proof that this suspected malware is capable of creating services on machines it infects to spread its infections.
 
-Double clicking lab 03-3 in the safe environment setup, Lab03-3.exe popped up in the process listing and then SVC.host popped below it and then lab03-3 disappeared
+Double clicking lab 03-3 in the safe environment setup, Lab03-3.exe popped up in the process listing and then `svchost.exe`(which is a process in windows used to hold running service) popped below it and then lab03-3 disappeared
 
 You will get the malware to install by running dll32.
 
@@ -123,4 +125,5 @@ You will get the malware to install by running dll32.
 - monitors the processes running on a system
 - Process Monitor: Monitoring tool for Windows to monitor certain registry, file system, network, process, and thread activity of a malware's behavior
 - Process Explorer: Windows task manager that was run when performing dynamic analysis to help in provision of valuable insight into the processes currently running on a system. Process Explorer lists active processes, DLLs loaded by a process,various process properties, and overall system information. Process Explorer can also be used to kill a process, log out users, and launch and validate processes.
+- InetSim: InetSim was used to simulate various network services and protocols that are commonly used by malware, such as HTTP, DNS, and SMTP to serve as a fake internet connection
 
