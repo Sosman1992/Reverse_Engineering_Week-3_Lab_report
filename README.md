@@ -47,7 +47,7 @@ Lastly using Resource Hacker tool to check whether this file has certain resourc
 # Lab 3-2
 
 ## Executive Summary
-First of all, I uploaded the `Lab03-2.DLL` file to Google's virusTotal.com website, then went on to run the `strings` program on the file to help me find clues as well as signatures if any that may be associated with the suspected file, Moreover used PEid utility software to determine if the file `Lab03-2.DLL` was packed and/or obfuscated. Moreover opening the `Lab03-2.DLL` in PEview revealed that this file five exports function assoociated with it including `install`,`installA`,`uninstallA` `ServiceMain` and `UninstallService`. In addition this DLL file is also composed of imported functions
+First of all, I uploaded the `Lab03-2.DLL` file to Google's virusTotal.com website, then went on to run the `strings` program on the file to help me find clues as well as signatures if any that may be associated with the suspected file, Moreover used PEid utility software to determine if the file `Lab03-2.DLL` was packed and/or obfuscated. Moreover opening the `Lab03-2.DLL` in PEview revealed that this file five exports function assoociated with it including `install`,`installA`,`uninstallA` `ServiceMain` and `UninstallService`. In addition this DLL file is also composed of imported functions. In conclusion conducted Basic Dynamic Analysis on file using the available tools. With this DLL file I executed it using the command rundll32.exe, install A in the safe and controlled environment using my Virtual Box manager to monitor the file behavior whiles it is executed.
 
 ## Indicators of Compromise
 
@@ -65,7 +65,7 @@ First of all, I uploaded the `Lab03-2.DLL` file to Google's virusTotal.com websi
 
 
 ## Mitigations
-- Scanning through a computer system to see if is running a service called `MalService` then it implies the machine is infected
+- Scanning through a computer system process monitor to see if is running a service called svchost then it implies it gets the capabilty of installing services to infect machine it executes on.
 
 ## Evidence
 
@@ -83,36 +83,33 @@ Typing `sc start `services.msc` at the command prompt started the malware servic
 # Lab 3-3
 
 ## Executive Summary
-
+First and foremost, uploaded the `Lab03-3.EXE` file to Google's virusTotal.com website, then went on to run the `strings` program on the file to help me find clues as well as signatures if any that may be associated with the suspected file, Moreover used PEid utility software to determine if the file `Lab03-2.EXE` was packed and/or obfuscated. In conclusion conducted Basic Dynamic Analysis on file using the available tools.
 ## Indicators of Compromise
 
 **Compilation Date :** SEPTEMBER 2010
 
-**MD5 Hash (DLL):** 84882c9d43e23d63b82004fae74ebb61
+**MD5 Hash (EXE):** 84882c9d43e23d63b82004fae74ebb61
 
-**SHA-1 (DLL):** c6fb3b50d946bec6f391aefa4e54478cf8607211
+**SHA-1 (EXE):** c6fb3b50d946bec6f391aefa4e54478cf8607211
 
 **SHA-256 (EXE):** 5eced7367ed63354b4ed5c556e2363514293f614c2c2eb187273381b2ef5f0f9 
 
-**URLs:** www.practicalmalwareanalysis.com
+**URLs:** www.practicalmalwareanalysis.log
 
-**File Type:** Win32 DLL  
+**File Type:** Win32 EXE 
 
 
 ## Mitigations
-- Scanning through a computer system to see if is running a service called `MalService` then it implies the machine is infected
+- Scanning through a computer system to see if is running a service in the string properties of process monitor called `svchost` that replaced the file name Lab03-3
 
 ## Evidence
 Opening the file using PE view there is no indication of the file packed looking at the virtual and raw size of the file. Also looking at .rdata section of the file it can be seen that there are ton of imports function from kernel32.dll that performs process manipulation, file creation and memory manipulation
 
-Opening file explorer and double clicking the file in the safe environment it can be seen that the  
+Opening file explorer and double clicking the file in the safe environment it can be seen that the svchost.exe memory section has a bunch of key strings stored in it memory that are associated keyboard functionality. 
 
-Using DependencyWalker on the  unpacked`.EXE`, to find the imports of the unpacked file, `InternetOpenUrlA` and `InternetOpenA` were revealed and they serve as a proof of the capability of the file connecting to the internet and in addition `CreateService` which is an import of the dynamic link library advapi32.dll serves as a proof that this suspected malware is capable of creating services on machines it infects to spread its infections.
+Using DependencyWalker on the  unpacked`.EXE`, to find the imports of the unpacked file, that this suspected malware is capable of creating services on machines it infects to capture keystrokes.
 
 Double clicking lab 03-3 in the safe environment setup, Lab03-3.exe popped up in the process listing and then `svchost.exe`(which is a process in windows used to hold running service) popped below it and then lab03-3 disappeared
-
-You will get the malware to install by running dll32.
-
 
 ---
 
